@@ -10,7 +10,7 @@ sudo apt-get install python-dev
 
 cd ~/.vim/bundle/YouCompleteMe/
 git submodule update --init --recursive
-./install.sh --gocode-completer
+./install.py --gocode-completer
 
 if [ -e ~/.vimrc ]; then
     if [ -e ~/.vimrc.old ]; then
