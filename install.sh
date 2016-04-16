@@ -24,8 +24,12 @@ ln -s .vimrc ~/
 cd ~/
 vim +PluginInstall +qall
 
-# PowerFonts for PowerLine
+# Fix for NerdTree. If we try to open but the file is already opened, 
+# just jump to the that instead of opening it twice.
+cp override_tab_mapping.vim bundle/nerdtree/nerdtree_plugin/
 
+
+# PowerFonts for PowerLine
 cd /tmp
 git clone https://github.com/powerline/powerline.git
 cd powerline

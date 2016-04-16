@@ -9,7 +9,8 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'fatih/vim-go'
-Plugin 'wting/gitsessions.vim'
+Plugin 'cfsalguero/gitsessions.vim'
+"Plugin 'wting/gitsessions.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'wting/rust.vim'
 Plugin 'scrooloose/syntastic'
@@ -17,6 +18,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'bling/vim-airline'    
 Plugin 'yegappan/mru'
 Plugin 'tpope/vim-fugitive'
+Plugin 'fisadev/vim-isort'
 Plugin 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
 Plugin 'cfsalguero/perl-go-to-def'
 
@@ -36,7 +38,7 @@ let g:ycm_register_as_syntastic_checker = 1 "default 1
 let g:Show_diagnostics_ui = 1 "default 1
 let g:ycm_enable_diagnostic_signs = 1
 let g:ycm_enable_diagnostic_highlighting = 1
-let g:ycm_always_populate_location_list = 1 "default 0
+let g:ycm_always_populate_location_list = 0 "default 0
 "let g:ycm_open_loclist_on_ycm_diags = 1 "default 1
 ""let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': ['go'] }
 
@@ -45,6 +47,8 @@ let g:airline_theme = 'dark'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 "
+"let g:ropevim_open_files_in_tabs = 1
+let g:pymode_rope_goto_definition_cmd = 'tabnew'
 au FileType go nmap <Leader>s <Plug>(go-implements)
 au FileType go nmap <Leader>gd <Plug>(go-doc)
 au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
@@ -56,19 +60,21 @@ au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 au FileType go nmap <Leader>e <Plug>(go-rename)
 au FileType go nmap <Leader>i <Plug>(go-info)
 au BufRead,BufNewFile *.md set filetype=markdown
+au BufRead,BufNewFile *.go set filetype=go
 
 :let g:session_autosave = 'yes'
 " To speed up GitSessions
 set ssop-=options    " do not store global and local values in a session
-set ssop-=folds      " do not store folds
+"set ssop-=folds      " do not store folds
 
 let g:go_fmt_fail_silently = 0
 let g:go_fmt_autosave = 1
-let g:go_highlight_functions = 0
+let g:go_highlight_functions = 1
 let g:go_highlight_methods = 0
 let g:go_highlight_structs = 0
 let g:go_fmt_command = "goimports"
 
+let g:pymode_lint = 0
 
 set number
 set t_Co=256
@@ -96,12 +102,14 @@ syntax on
 colorscheme hybrid
 
 hi CursorLine term=none cterm=none ctermbg=Black
-hi TabLineFill ctermfg=DarkGrey ctermbg=DarkGrey
+hi TabLineFill ctermfg=White ctermbg=DarkGrey
 hi TabLine term=none cterm=none ctermfg=White ctermbg=DarkGrey
 hi TabLineSel term=none cterm=none ctermfg=White ctermbg=Blue
 " Overriden by airline
 set statusline=%F%m%r%h%w\ \ \ [FORMAT=%{&ff}]\ [TYPE=%Y]\ \ \ \ \ \ \ \ [POS=%4l,%4v]\ \ \ \ \ \ [%p%%]\ [LEN=%L] 
 "
+"let g:airline#extensions#tabline#show_tabs = 1
+"let g:airline#extensions#tabline#show_buffers = 0
 let NERDTreeQuitOnOpen = 1
 " Mappings for Solaris
 "set <F3>=OR
