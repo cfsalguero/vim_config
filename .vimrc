@@ -141,8 +141,8 @@ let NERDTreeQuitOnOpen = 1
 "set <Insert>=[2~
 
 map  <C-n>       :NERDTreeToggle<CR>
-map  <C-Right>   <Esc>:tabn<CR>
-map  <C-Left>    <Esc>:tabp<CR>
+map  <C-Right>   <Esc>:bnext<CR>
+map  <C-Left>    <Esc>:bprevious<CR>
 map  <C-Down>    <Esc><C-w><Down>
 map  <C-Up>      <Esc><C-w><Up>
 
