@@ -7,15 +7,14 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
+Plugin 'bling/vim-airline'    
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'fatih/vim-go'
-Plugin 'cfsalguero/gitsessions.vim'
-"Plugin 'wting/gitsessions.vim'
+Plugin 'wting/gitsessions.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'wting/rust.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
-Plugin 'bling/vim-airline'    
 Plugin 'yegappan/mru'
 Plugin 'tpope/vim-fugitive'
 Plugin 'fisadev/vim-isort'
@@ -27,14 +26,14 @@ filetype plugin indent on " required
 syntax on
 
 " Send more characters for redraws
-set ttyfast
+"set ttyfast
 "
 " Enable mouse use in all modes
-set mouse=a
+"set mouse=a
 "
 " Set this to the name of your terminal that supports mouse codes.
 " Must be one of: xterm, xterm2, netterm, dec, jsbterm, pterm
-set ttymouse=xterm2
+"set ttymouse=xterm2
 
 set completeopt=menu
 set showtabline=2
@@ -49,16 +48,24 @@ let g:Show_diagnostics_ui = 1 "default 1
 let g:ycm_enable_diagnostic_signs = 1
 let g:ycm_enable_diagnostic_highlighting = 1
 let g:ycm_always_populate_location_list = 0 "default 0
-"let g:ycm_open_loclist_on_ycm_diags = 1 "default 1
-""let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': ['go'] }
+let g:ycm_open_loclist_on_ycm_diags = 1 "default 1
+
+let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': [],'passive_filetypes': [] }
+
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_go_checkers = ['gofmt', 'go', 'golint', 'govet', 'errcheck']
+"let g:go_list_type = "quickfix"
+let g:syntastic_enable_perl_checker = 1
+let g:syntastic_perl_checkers = ['perl', 'podchecker']
 
 "air-line
 let g:airline_theme = 'dark'
-let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#tabline#show_buffers = 0
+
+let NERDTreeQuitOnOpen = 1
 "
-"let g:ropevim_open_files_in_tabs = 1
-let g:pymode_rope_goto_definition_cmd = 'tabnew'
 au FileType go nmap <Leader>s <Plug>(go-implements)
 au FileType go nmap <Leader>gd <Plug>(go-doc)
 au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
@@ -77,14 +84,13 @@ au BufRead,BufNewFile *.go set filetype=go
 set ssop-=options    " do not store global and local values in a session
 "set ssop-=folds      " do not store folds
 
-let g:go_fmt_fail_silently = 0
+let g:go_fmt_fail_silently = 1
 let g:go_fmt_autosave = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 0
 let g:go_highlight_structs = 0
 let g:go_fmt_command = "goimports"
 
-let g:pymode_lint = 0
 
 set number
 set t_Co=256
@@ -108,7 +114,6 @@ set hlsearch
 set foldmethod=syntax
 set foldlevelstart=20
 
-syntax on
 colorscheme hybrid
 
 hi CursorLine term=none cterm=none ctermbg=Black
@@ -116,11 +121,8 @@ hi TabLineFill ctermfg=White ctermbg=DarkGrey
 hi TabLine term=none cterm=none ctermfg=White ctermbg=DarkGrey
 hi TabLineSel term=none cterm=none ctermfg=White ctermbg=Blue
 " Overriden by airline
-set statusline=%F%m%r%h%w\ \ \ [FORMAT=%{&ff}]\ [TYPE=%Y]\ \ \ \ \ \ \ \ [POS=%4l,%4v]\ \ \ \ \ \ [%p%%]\ [LEN=%L] 
+"set statusline=%F%m%r%h%w\ \ \ [FORMAT=%{&ff}]\ [TYPE=%Y]\ \ \ \ \ \ \ \ [POS=%4l,%4v]\ \ \ \ \ \ [%p%%]\ [LEN=%L] 
 "
-"let g:airline#extensions#tabline#show_tabs = 1
-"let g:airline#extensions#tabline#show_buffers = 0
-let NERDTreeQuitOnOpen = 1
 " Mappings for Solaris
 "set <F3>=OR
 "set <F4>=[[D
