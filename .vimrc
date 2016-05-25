@@ -7,12 +7,10 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
-Plugin 'bling/vim-airline'    
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'fatih/vim-go'
 Plugin 'wting/gitsessions.vim'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'wting/rust.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'yegappan/mru'
@@ -20,6 +18,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'fisadev/vim-isort'
 Plugin 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
 Plugin 'cfsalguero/perl-go-to-def'
+Plugin 'vim-airline/vim-airline'
 
 call vundle#end() " required
 filetype plugin indent on " required
@@ -35,28 +34,37 @@ syntax on
 " Must be one of: xterm, xterm2, netterm, dec, jsbterm, pterm
 "set ttymouse=xterm2
 
-set completeopt=menu
+set completeopt=longest,menuone
 set showtabline=2
+set path=.,,**
 
 :let mapleader = ","
+
 let g:ycm_auto_trigger=1
 let g:ycm_key_invoke_completion = '<C-Space>'
 let g:ycm_complete_in_strings = 1 "default 1
 let g:ycm_min_num_of_chars_for_completion=3
 let g:ycm_register_as_syntastic_checker = 1 "default 1
-let g:Show_diagnostics_ui = 1 "default 1
 let g:ycm_enable_diagnostic_signs = 1
 let g:ycm_enable_diagnostic_highlighting = 1
 let g:ycm_always_populate_location_list = 0 "default 0
 let g:ycm_open_loclist_on_ycm_diags = 1 "default 1
 
-let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': [],'passive_filetypes': [] }
+let g:Show_diagnostics_ui = 1 "default 1
 
+let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': [],'passive_filetypes': [] }
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_go_checkers = ['gofmt', 'go', 'golint', 'govet', 'errcheck']
-"let g:go_list_type = "quickfix"
 let g:syntastic_enable_perl_checker = 1
 let g:syntastic_perl_checkers = ['perl', 'podchecker']
+
+let g:go_fmt_fail_silently = 1
+let g:go_fmt_autosave = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 0
+let g:go_highlight_structs = 0
+let g:go_fmt_command = "goimports"
+"let g:go_list_type = "quickfix"
 
 "air-line
 let g:airline_theme = 'dark'
@@ -76,6 +84,7 @@ au FileType go nmap <leader>c <Plug>(go-coverage)
 au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 au FileType go nmap <Leader>e <Plug>(go-rename)
 au FileType go nmap <Leader>i <Plug>(go-info)
+
 au BufRead,BufNewFile *.md set filetype=markdown
 au BufRead,BufNewFile *.go set filetype=go
 
@@ -83,13 +92,6 @@ au BufRead,BufNewFile *.go set filetype=go
 " To speed up GitSessions
 set ssop-=options    " do not store global and local values in a session
 "set ssop-=folds      " do not store folds
-
-let g:go_fmt_fail_silently = 1
-let g:go_fmt_autosave = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 0
-let g:go_highlight_structs = 0
-let g:go_fmt_command = "goimports"
 
 
 set number
@@ -143,8 +145,8 @@ hi TabLineSel term=none cterm=none ctermfg=White ctermbg=Blue
 "set <Insert>=[2~
 
 map  <C-n>       :NERDTreeToggle<CR>
-map  <C-Right>   <Esc>:bnext<CR>
-map  <C-Left>    <Esc>:bprevious<CR>
+map  <C-Right>   <Esc>:tabnext<CR>
+map  <C-Left>    <Esc>:tabprevious<CR>
 map  <C-Down>    <Esc><C-w><Down>
 map  <C-Up>      <Esc><C-w><Up>
 
