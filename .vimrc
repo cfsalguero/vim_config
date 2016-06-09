@@ -9,14 +9,16 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'fatih/vim-go'
-Plugin 'wting/gitsessions.vim'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'scrooloose/syntastic'
+"Plugin 'scrooloose/syntastic'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-session'
+Plugin 'neomake/neomake'
 Plugin 'scrooloose/nerdtree'
 Plugin 'yegappan/mru'
 Plugin 'tpope/vim-fugitive'
 Plugin 'fisadev/vim-isort'
-Plugin 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
+"Plugin 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
 Plugin 'cfsalguero/perl-go-to-def'
 Plugin 'vim-airline/vim-airline'
 
@@ -28,7 +30,7 @@ syntax on
 "set ttyfast
 "
 " Enable mouse use in all modes
-"set mouse=a
+set mouse=
 "
 " Set this to the name of your terminal that supports mouse codes.
 " Must be one of: xterm, xterm2, netterm, dec, jsbterm, pterm
@@ -39,6 +41,9 @@ set showtabline=2
 set path=.,,**
 
 :let mapleader = ","
+
+let g:neomake_verbose=1
+let g:neomake_logfile='/tmp/s'
 
 let g:ycm_auto_trigger=1
 let g:ycm_key_invoke_completion = '<C-Space>'
@@ -74,6 +79,10 @@ let g:airline#extensions#tabline#enabled = 1
 
 let NERDTreeQuitOnOpen = 1
 "
+let g:session_autoload = 'yes'
+let g:session_autosave = 'yes'
+let g:session_default_to_last = 1
+
 au FileType go nmap <Leader>s <Plug>(go-implements)
 au FileType go nmap <Leader>gd <Plug>(go-doc)
 au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
@@ -87,6 +96,8 @@ au FileType go nmap <Leader>i <Plug>(go-info)
 
 au BufRead,BufNewFile *.md set filetype=markdown
 au BufRead,BufNewFile *.go set filetype=go
+autocmd! BufWritePost * Neomake
+
 
 :let g:session_autosave = 'yes'
 " To speed up GitSessions
