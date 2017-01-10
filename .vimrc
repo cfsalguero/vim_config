@@ -10,16 +10,16 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'fatih/vim-go'
 Plugin 'airblade/vim-gitgutter'
-"Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
 Plugin 'xolox/vim-misc'
 "Plugin 'xolox/vim-session'
 Plugin 'wting/gitsessions.vim'
-Plugin 'neomake/neomake'
+" Plugin 'neomake/neomake'
 Plugin 'scrooloose/nerdtree'
 Plugin 'yegappan/mru'
 Plugin 'tpope/vim-fugitive'
 Plugin 'fisadev/vim-isort'
-"Plugin 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
+Plugin 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
 Plugin 'cfsalguero/perl-go-to-def'
 Plugin 'vim-airline/vim-airline'
 
@@ -97,7 +97,7 @@ au FileType go nmap <Leader>i <Plug>(go-info)
 
 au BufRead,BufNewFile *.md set filetype=markdown
 au BufRead,BufNewFile *.go set filetype=go
-autocmd! BufWritePost * Neomake
+" autocmd! BufWritePost * Neomake
 
 
 :let g:session_autosave = 'yes'
@@ -161,6 +161,8 @@ map  <C-Right>   <Esc>:tabnext<CR>
 map  <C-Left>    <Esc>:tabprevious<CR>
 map  <C-Down>    <Esc><C-w><Down>
 map  <C-Up>      <Esc><C-w><Up>
+map  <C-S-Down>  :lnext<CR>
+map  <C-S-Up>    :lprevious<CR>
 
 " :w!! will write read only files not opened with sudo
 cmap w!! w !sudo tee % >/dev/null
