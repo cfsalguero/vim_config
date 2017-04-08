@@ -10,11 +10,10 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'fatih/vim-go'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'scrooloose/syntastic'
 Plugin 'xolox/vim-misc'
-"Plugin 'xolox/vim-session'
-Plugin 'wting/gitsessions.vim'
-" Plugin 'neomake/neomake'
+"Plugin 'wting/gitsessions.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'neomake/neomake'
 Plugin 'scrooloose/nerdtree'
 Plugin 'yegappan/mru'
 Plugin 'tpope/vim-fugitive'
@@ -40,11 +39,18 @@ set mouse=
 set completeopt=longest,menuone
 set showtabline=2
 set path=.,,**
+" Don't wrap word when using * or #
+" set nowrapscan
+" Case sentive search only if the search word has an upppercase letter
+" Both ignorecase and smartcase must be on to make this feature work
+set ignorecase
+set smartcase
 
 :let mapleader = ","
 
 let g:neomake_verbose=1
 let g:neomake_logfile='/tmp/s'
+"autocmd! BufWritePost * Neomake
 
 let g:ycm_auto_trigger=1
 let g:ycm_key_invoke_completion = '<C-Space>'
@@ -76,7 +82,7 @@ let g:go_fmt_command = "goimports"
 let g:airline_theme = 'dark'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-"let g:airline#extensions#tabline#show_buffers = 0
+let g:airline#extensions#tabline#show_buffers = 1
 
 let NERDTreeQuitOnOpen = 1
 "
@@ -97,14 +103,13 @@ au FileType go nmap <Leader>i <Plug>(go-info)
 
 au BufRead,BufNewFile *.md set filetype=markdown
 au BufRead,BufNewFile *.go set filetype=go
-" autocmd! BufWritePost * Neomake
+let g:markdown_fenced_languages = ['javascript', 'go', 'php']
 
 
 :let g:session_autosave = 'yes'
 " To speed up GitSessions
 set ssop-=options    " do not store global and local values in a session
 "set ssop-=folds      " do not store folds
-
 
 set number
 set t_Co=256
