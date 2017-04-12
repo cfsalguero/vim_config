@@ -14,6 +14,9 @@ then
         mv ${VIMRC} ${VIMRC}_${DATE}
     fi
 fi
+
+mkdir -p ${HOME}/.vimrc/undodir
+
 ln -s ${HOME}/.vim/.vimrc ${VIMRC} 
 
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim

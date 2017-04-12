@@ -36,6 +36,9 @@ set mouse=
 " Must be one of: xterm, xterm2, netterm, dec, jsbterm, pterm
 "set ttymouse=xterm2
 
+set undofile " Maintain undo history between sessions
+set undodir=~/.vim/undodir
+
 set completeopt=longest,menuone
 set showtabline=2
 set path=.,,**
