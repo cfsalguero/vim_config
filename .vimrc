@@ -25,6 +25,8 @@ Plugin 'vim-airline/vim-airline'
 call vundle#end() " required
 filetype plugin indent on " required
 syntax on
+" Set path to let neovim find colors
+set rtp+=~/.vim
 
 " Send more characters for redraws
 "set ttyfast
