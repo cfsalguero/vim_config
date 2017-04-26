@@ -13,7 +13,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'xolox/vim-misc'
 Plugin 'wting/gitsessions.vim'
 Plugin 'scrooloose/syntastic'
-Plugin 'neomake/neomake'
+"Plugin 'neomake/neomake'
 Plugin 'scrooloose/nerdtree'
 Plugin 'yegappan/mru'
 Plugin 'tpope/vim-fugitive'
@@ -29,7 +29,7 @@ syntax on
 set rtp+=~/.vim
 
 " Send more characters for redraws
-"set ttyfast
+set ttyfast
 "
 " Enable mouse use in all modes
 set mouse=
@@ -44,8 +44,6 @@ set undodir=~/.vim/undodir
 set completeopt=longest,menuone
 set showtabline=2
 set path=.,,**
-" Don't wrap word when using * or #
-" set nowrapscan
 " Case sentive search only if the search word has an upppercase letter
 " Both ignorecase and smartcase must be on to make this feature work
 set ignorecase
