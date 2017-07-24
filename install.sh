@@ -1,6 +1,6 @@
 #!/bin/bash
 DATE=$(date +%FT%T%z)
-VIMRC=${HOME}/.vimrc
+VIMRC="${HOME}/.vimrc"
 
 if [ -a ${HOME}/.vimrc ];
 then
@@ -26,8 +26,8 @@ git clone https://github.com/scrooloose/nerdtree.git ~/vim/bundle/nerdtree
 
 # YCM
 echo "need to install build-essential & cmake"
-sudo apt-get install build-essential cmake
-sudo apt-get install python-dev
+sudo apt-get install -y build-essential cmake
+sudo apt-get install -y python-dev
 
 cd ~/.vim/bundle/YouCompleteMe/
 git submodule update --init --recursive
@@ -53,3 +53,5 @@ sudo mv PowerlineSymbols.otf /usr/share/fonts/
 sudo fc-cache -vf
 sudo mv 10-powerline-symbols.conf /etc/fonts/conf.d/
 
+mkdir -p ${HOME}/.config/nvim/
+ln -s ~/.vim/.vimrc ~/.config/nvim/init.vim
