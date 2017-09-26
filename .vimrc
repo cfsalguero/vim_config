@@ -14,6 +14,7 @@ Plugin 'xolox/vim-misc'
 Plugin 'wting/gitsessions.vim'
 Plugin 'scrooloose/syntastic'
 "Plugin 'neomake/neomake'
+Plugin 'kshenoy/vim-signature'
 Plugin 'scrooloose/nerdtree'
 Plugin 'yegappan/mru'
 Plugin 'tpope/vim-fugitive'
@@ -39,7 +40,7 @@ set mouse=
 "set ttymouse=xterm2
 
 set undofile " Maintain undo history between sessions
-set undodir=~/.vim/undodir
+"set undodir=~/.vim/undodir
 
 set completeopt=longest,menuone
 set showtabline=2
@@ -73,7 +74,7 @@ let g:syntastic_go_checkers = ['gofmt', 'go', 'golint', 'govet', 'errcheck']
 let g:syntastic_enable_perl_checker = 1
 let g:syntastic_perl_checkers = ['perl', 'podchecker']
 
-let g:go_fmt_fail_silently = 1
+let g:go_fmt_fail_silently = 0
 let g:go_fmt_autosave = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 0
@@ -89,10 +90,6 @@ let g:airline#extensions#tabline#show_buffers = 1
 
 let NERDTreeQuitOnOpen = 1
 "
-let g:session_autoload = 'yes'
-let g:session_autosave = 'yes'
-let g:session_default_to_last = 1
-
 au FileType go nmap <Leader>s <Plug>(go-implements)
 au FileType go nmap <Leader>gd <Plug>(go-doc)
 au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
@@ -112,7 +109,7 @@ let g:markdown_fenced_languages = ['javascript', 'go', 'php']
 :let g:session_autosave = 'yes'
 " To speed up GitSessions
 set ssop-=options    " do not store global and local values in a session
-"set ssop-=folds      " do not store folds
+"set ssop-=folds     " do not store folds
 
 set number
 set t_Co=256
