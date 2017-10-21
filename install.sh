@@ -15,7 +15,7 @@ then
     fi
 fi
 
-mkdir -p ${HOME}/.vimrc/undodir
+mkdir -p ${HOME}/.vim/undodir
 
 ln -s ${HOME}/.vim/.vimrc ${VIMRC} 
 
@@ -27,7 +27,9 @@ git clone https://github.com/scrooloose/nerdtree.git ~/vim/bundle/nerdtree
 # YCM
 echo "need to install build-essential & cmake"
 sudo apt-get install -y build-essential cmake
-sudo apt-get install -y python-dev
+sudo apt-get install -y python-dev python-pip python3-dev python3-pip python-neovim python3-neovim
+sudo pip2 install --upgrade neovim
+
 
 cd ~/.vim/bundle/YouCompleteMe/
 git submodule update --init --recursive
