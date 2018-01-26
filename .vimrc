@@ -3,11 +3,12 @@ filetype off " required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=/usr/share/vim/vim80
 call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/YouCompleteMe'
 Plugin 'fatih/vim-go'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'xolox/vim-misc'
@@ -21,8 +22,18 @@ Plugin 'yegappan/mru'
 Plugin 'tpope/vim-fugitive'
 Plugin 'fisadev/vim-isort'
 Plugin 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
-Plugin 'cfsalguero/perl-go-to-def'
+"Plugin 'cfsalguero/perl-go-to-def'
 Plugin 'vim-airline/vim-airline'
+Plugin 'burnettk/vim-angular'
+Plugin 'Chiel92/vim-autoformat'
+
+Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plugin 'zchee/deoplete-go', { 'do': 'make'}
+
+if has('nvim')
+    " Enable deoplete on startup
+    let g:deoplete#enable_at_startup = 1
+endif
 
 call vundle#end() " required
 filetype plugin indent on " required
@@ -53,8 +64,8 @@ set smartcase
 
 :let mapleader = ","
 
-let g:neomake_verbose=1
-let g:neomake_logfile='/tmp/s'
+"let g:neomake_verbose=0
+"let g:neomake_logfile='/tmp/s'
 "autocmd! BufWritePost * Neomake
 
 let g:ycm_auto_trigger=1
@@ -71,23 +82,45 @@ let g:Show_diagnostics_ui = 1 "default 1
 
 let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': [],'passive_filetypes': [] }
 let g:syntastic_auto_loc_list = 0
-let g:syntastic_go_checkers = ['gofmt', 'go', 'golint', 'govet', 'errcheck']
+let g:syntastic_go_checkers = ['gometalinter']
 let g:syntastic_enable_perl_checker = 1
 let g:syntastic_perl_checkers = ['perl', 'podchecker']
 
 let g:go_fmt_fail_silently = 0
 let g:go_fmt_autosave = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 0
-let g:go_highlight_structs = 0
 let g:go_fmt_command = "goimports"
+
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_types = 1
+" Show function params in the status line
+"let g:go_auto_type_info = 1
+
+"let g:go_auto_sameids = 1
+
 "let g:go_list_type = "quickfix"
+
+" Ale / Airline
+let g:ale_linters = {
+\   'go': ['go build', 'gometalinter'],
+\   'perl': ['perl', 'perlcritic'],
+\}
+let g:ale_fix_on_save = 1
+let g:ale_sign_error = '⤫'
+let g:ale_sign_warning = '⚠'
+" Enable integration with airline.
+let g:airline#extensions#ale#enabled = 1
 
 "air-line
 let g:airline_theme = 'dark'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_buffers = 1
+let g:airline#extensions#tabline#show_buffers = 0
 
 let NERDTreeQuitOnOpen = 1
 "
@@ -104,6 +137,7 @@ au FileType go nmap <Leader>i <Plug>(go-info)
 
 au BufRead,BufNewFile *.md set filetype=markdown
 au BufRead,BufNewFile *.go set filetype=go
+au BufRead,BufNewFile *.ts set filetype=javascript
 let g:markdown_fenced_languages = ['javascript', 'go', 'php']
 
 
