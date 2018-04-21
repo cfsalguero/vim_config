@@ -22,7 +22,6 @@ Plugin 'yegappan/mru'
 Plugin 'tpope/vim-fugitive'
 Plugin 'fisadev/vim-isort'
 Plugin 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
-"Plugin 'cfsalguero/perl-go-to-def'
 Plugin 'vim-airline/vim-airline'
 Plugin 'burnettk/vim-angular'
 Plugin 'Chiel92/vim-autoformat'
@@ -96,7 +95,7 @@ let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_operators = 1
-let g:go_highlight_structs = 1
+let g:go_highlight_structs = 0
 let g:go_highlight_types = 1
 " Show function params in the status line
 "let g:go_auto_type_info = 1
@@ -113,6 +112,10 @@ let g:ale_linters = {
 let g:ale_fix_on_save = 1
 let g:ale_sign_error = '⤫'
 let g:ale_sign_warning = '⚠'
+let g:ale_set_highlights = 0
+" Don't run w0rp/ale on file open
+let g:ale_lint_on_enter = 0
+
 " Enable integration with airline.
 let g:airline#extensions#ale#enabled = 1
 
