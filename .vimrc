@@ -113,6 +113,7 @@ let g:ale_fix_on_save = 1
 let g:ale_sign_error = '⤫'
 let g:ale_sign_warning = '⚠'
 let g:ale_set_highlights = 0
+" Don't run w0rp/ale on file open
 let g:ale_lint_on_enter = 0
 
 " Enable integration with airline.
