@@ -199,13 +199,15 @@ hi TabLineSel term=none cterm=none ctermfg=White ctermbg=Blue
 "set <End>=[4~
 "set <Insert>=[2~
 
-map  <C-n>       :NERDTreeToggle<CR>
-map  <C-Right>   <Esc>:tabnext<CR>
-map  <C-Left>    <Esc>:tabprevious<CR>
-map  <C-Down>    <Esc><C-w><Down>
-map  <C-Up>      <Esc><C-w><Up>
-map  <C-S-Down>  :lnext<CR>
-map  <C-S-Up>    :lprevious<CR>
+map <C-n>       :NERDTreeToggle<CR>
+map <C-Right>   <Esc>:tabnext<CR>
+map <C-Left>    <Esc>:tabprevious<CR>
+map <C-Down>    <Esc><C-w><Down>
+map <C-Up>      <Esc><C-w><Up>
+map <C-S-Down>  :lnext<CR>
+map <C-S-Up>    :lprevious<CR>
+map <C-A-Left>  <Esc>:tabm -1<CR>
+map <C-A-Right> <Esc>:tabm +1<CR>
 
 " :w!! will write read only files not opened with sudo
 cmap w!! w !sudo tee % >/dev/null
