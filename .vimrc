@@ -115,6 +115,7 @@ let g:ale_sign_warning = '⚠'
 let g:ale_set_highlights = 0
 " Don't run w0rp/ale on file open
 let g:ale_lint_on_enter = 0
+let g:ale_sign_column_always = 1
 
 " Enable integration with airline.
 let g:airline#extensions#ale#enabled = 1
@@ -142,7 +143,7 @@ au BufRead,BufNewFile *.md set filetype=markdown
 au BufRead,BufNewFile *.go set filetype=go
 au BufRead,BufNewFile *.ts set filetype=javascript
 let g:markdown_fenced_languages = ['javascript', 'go', 'php']
-
+set signcolumn="yes"
 
 :let g:session_autosave = 'yes'
 " To speed up GitSessions
