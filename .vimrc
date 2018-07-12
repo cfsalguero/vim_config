@@ -25,6 +25,8 @@ Plugin 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highl
 Plugin 'vim-airline/vim-airline'
 Plugin 'burnettk/vim-angular'
 Plugin 'Chiel92/vim-autoformat'
+Plugin 'rust-lang/rust.vim'
+Plugin 'SirVer/ultisnips'
 
 Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plugin 'zchee/deoplete-go', { 'do': 'make'}
@@ -60,7 +62,8 @@ set path=.,,**
 " Both ignorecase and smartcase must be on to make this feature work
 set ignorecase
 set smartcase
-
+" Auto write the files before make (for vim-go)
+set autowrite 
 :let mapleader = ","
 
 "let g:neomake_verbose=0
@@ -97,8 +100,9 @@ let g:go_highlight_methods = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_structs = 0
 let g:go_highlight_types = 1
+let g:go_textobj_include_function_doc = 1
 " Show function params in the status line
-"let g:go_auto_type_info = 1
+let g:go_auto_type_info = 1
 
 "let g:go_auto_sameids = 1
 
@@ -106,17 +110,18 @@ let g:go_highlight_types = 1
 
 " Ale / Airline
 let g:ale_linters = {
-\   'go': ['go build', 'gometalinter'],
+\   'go': ['go build', 'gofmt', 'golint', 'go vet'],
 \   'perl': ['perl', 'perlcritic'],
 \}
+
 let g:ale_fix_on_save = 1
 let g:ale_sign_error = '⤫'
 let g:ale_sign_warning = '⚠'
-let g:ale_set_highlights = 0
+let g:ale_set_highlights = 1
 " Don't run w0rp/ale on file open
 let g:ale_lint_on_enter = 0
 let g:ale_sign_column_always = 1
-
+let g:ale_lint_on_text_changed = 'always'
 " Enable integration with airline.
 let g:airline#extensions#ale#enabled = 1
 
@@ -200,15 +205,16 @@ hi TabLineSel term=none cterm=none ctermfg=White ctermbg=Blue
 "set <End>=[4~
 "set <Insert>=[2~
 
-map <C-n>       :NERDTreeToggle<CR>
-map <C-Right>   <Esc>:tabnext<CR>
-map <C-Left>    <Esc>:tabprevious<CR>
-map <C-Down>    <Esc><C-w><Down>
-map <C-Up>      <Esc><C-w><Up>
-map <C-S-Down>  :lnext<CR>
-map <C-S-Up>    :lprevious<CR>
-map <C-A-Left>  <Esc>:tabm -1<CR>
-map <C-A-Right> <Esc>:tabm +1<CR>
+map <C-n>         :NERDTreeToggle<CR>
+map <C-Right>     <Esc>:tabnext<CR>
+map <C-Left>      <Esc>:tabprevious<CR>
+map <C-Down>      <Esc><C-w><Down>
+map <C-Up>        <Esc><C-w><Up>
+map <C-S-Down>    :lnext<CR>
+map <C-S-Up>      :lprevious<CR>
+map <C-A-Left>    <Esc>:tabm -1<CR>
+map <C-A-Right>   <Esc>:tabm +1<CR>
+nnoremap <silent> ,<space> :nohlsearch<CR>
 
 " :w!! will write read only files not opened with sudo
 cmap w!! w !sudo tee % >/dev/null
