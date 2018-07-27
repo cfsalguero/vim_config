@@ -63,8 +63,12 @@ set path=.,,**
 set ignorecase
 set smartcase
 " Auto write the files before make (for vim-go)
-set autowrite 
+" set autowrite 
 :let mapleader = ","
+" Width for word wrap
+:set textwidth=120 
+let g:autoformat_verbosemode=1
+let g:formatdef_perltidy='"perltidy --perl-best-practices -l=120 -ce -lp -pt=2"'
 
 "let g:neomake_verbose=0
 "let g:neomake_logfile='/tmp/s'
@@ -102,7 +106,7 @@ let g:go_highlight_structs = 0
 let g:go_highlight_types = 1
 let g:go_textobj_include_function_doc = 1
 " Show function params in the status line
-let g:go_auto_type_info = 1
+"let g:go_auto_type_info = 1
 
 "let g:go_auto_sameids = 1
 
@@ -121,7 +125,8 @@ let g:ale_set_highlights = 1
 " Don't run w0rp/ale on file open
 let g:ale_lint_on_enter = 0
 let g:ale_sign_column_always = 1
-let g:ale_lint_on_text_changed = 'always'
+"let g:ale_lint_on_text_changed = 'always'
+let g:ale_lint_on_text_changed = 0
 " Enable integration with airline.
 let g:airline#extensions#ale#enabled = 1
 
@@ -215,6 +220,7 @@ map <C-S-Up>      :lprevious<CR>
 map <C-A-Left>    <Esc>:tabm -1<CR>
 map <C-A-Right>   <Esc>:tabm +1<CR>
 nnoremap <silent> ,<space> :nohlsearch<CR>
+nnoremap <silent> <leader>fp :echo expand('%:p')<CR>
 
 " :w!! will write read only files not opened with sudo
 cmap w!! w !sudo tee % >/dev/null
