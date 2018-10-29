@@ -8,28 +8,27 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
-"Plugin 'Valloric/YouCompleteMe'
 Plugin 'fatih/vim-go'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'xolox/vim-misc'
 Plugin 'wting/gitsessions.vim'
-"Plugin 'scrooloose/syntastic'
-"Plugin 'neomake/neomake'
 Plugin 'w0rp/ale'
 Plugin 'kshenoy/vim-signature'
 Plugin 'scrooloose/nerdtree'
 Plugin 'yegappan/mru'
 Plugin 'tpope/vim-fugitive'
 Plugin 'fisadev/vim-isort'
-Plugin 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
+"Plugin 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
 Plugin 'vim-airline/vim-airline'
 Plugin 'burnettk/vim-angular'
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'rust-lang/rust.vim'
+Plugin 'cfsalguero/perl-go-to-def'
 Plugin 'SirVer/ultisnips'
-
+Plugin 'buoto/gotests-vim'
 Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plugin 'zchee/deoplete-go', { 'do': 'make'}
+Plugin 'uber/prototool', { 'rtp':'vim/prototool' }
 
 if has('nvim')
     " Enable deoplete on startup
@@ -52,6 +51,10 @@ set mouse=
 " Must be one of: xterm, xterm2, netterm, dec, jsbterm, pterm
 "set ttymouse=xterm2
 
+set autoread
+" au FocusGained,BufEnter * :checktime
+" au CursorHold,CursorHoldI * checktime
+
 set undofile " Maintain undo history between sessions
 "set undodir=~/.vim/undodir
 
@@ -66,13 +69,11 @@ set smartcase
 " set autowrite 
 :let mapleader = ","
 " Width for word wrap
-:set textwidth=120 
+:set textwidth=152
+:set synmaxcol=256
+
 let g:autoformat_verbosemode=1
 let g:formatdef_perltidy='"perltidy --perl-best-practices -l=120 -ce -lp -pt=2"'
-
-"let g:neomake_verbose=0
-"let g:neomake_logfile='/tmp/s'
-"autocmd! BufWritePost * Neomake
 
 let g:ycm_auto_trigger=1
 let g:ycm_key_invoke_completion = '<C-Space>'
@@ -105,17 +106,18 @@ let g:go_highlight_operators = 1
 let g:go_highlight_structs = 0
 let g:go_highlight_types = 1
 let g:go_textobj_include_function_doc = 1
+let g:go_term_enabled = 0
+let g:go_list_type = "locationlist"
+"let g:go_list_type = "quickfix"
 " Show function params in the status line
 "let g:go_auto_type_info = 1
-
 "let g:go_auto_sameids = 1
-
-"let g:go_list_type = "quickfix"
 
 " Ale / Airline
 let g:ale_linters = {
 \   'go': ['go build', 'gofmt', 'golint', 'go vet'],
 \   'perl': ['perl', 'perlcritic'],
+\   'proto': ['prototool'],
 \}
 
 let g:ale_fix_on_save = 1
