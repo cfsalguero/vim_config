@@ -28,12 +28,12 @@ git clone https://github.com/scrooloose/nerdtree.git ~/vim/bundle/nerdtree
 echo "need to install build-essential & cmake"
 sudo apt-get install -y build-essential cmake
 sudo apt-get install -y python-dev python-pip python3-dev python3-pip python-neovim python3-neovim
-sudo pip2 install --upgrade neovim
+sudo pip install --upgrade neovim
 
 
-cd ~/.vim/bundle/YouCompleteMe/
-git submodule update --init --recursive
-./install.py --gocode-completer
+# cd ~/.vim/bundle/YouCompleteMe/
+# git submodule update --init --recursive
+# ./install.py --gocode-completer
 
 
 cd ~/

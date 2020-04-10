@@ -6,13 +6,13 @@ set rtp+=~/.vim/bundle/Vundle.vim
 set rtp+=/usr/share/vim/vim80
 call vundle#begin()
 
-" let Vundle manage Vundle, required
+"let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 Plugin 'fatih/vim-go'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'xolox/vim-misc'
 Plugin 'wting/gitsessions.vim'
-Plugin 'w0rp/ale'
+Plugin 'dense-analysis/ale'
 Plugin 'kshenoy/vim-signature'
 Plugin 'scrooloose/nerdtree'
 Plugin 'yegappan/mru'
@@ -40,9 +40,8 @@ filetype plugin indent on " required
 syntax on
 " Set path to let neovim find colors
 set rtp+=~/.vim
-
 " Send more characters for redraws
-set ttyfast
+"set ttyfast
 "
 " Enable mouse use in all modes
 set mouse=
@@ -51,7 +50,7 @@ set mouse=
 " Must be one of: xterm, xterm2, netterm, dec, jsbterm, pterm
 "set ttymouse=xterm2
 
-set autoread
+"set autoread
 " au FocusGained,BufEnter * :checktime
 " au CursorHold,CursorHoldI * checktime
 
@@ -66,7 +65,7 @@ set path=.,,**
 set ignorecase
 set smartcase
 " Auto write the files before make (for vim-go)
-" set autowrite 
+set autowrite 
 :let mapleader = ","
 " Width for word wrap
 :set textwidth=152
@@ -75,25 +74,9 @@ set smartcase
 let g:autoformat_verbosemode=1
 let g:formatdef_perltidy='"perltidy --perl-best-practices -l=120 -ce -lp -pt=2"'
 
-let g:ycm_auto_trigger=1
-let g:ycm_key_invoke_completion = '<C-Space>'
-let g:ycm_complete_in_strings = 1 "default 1
-let g:ycm_min_num_of_chars_for_completion=3
-let g:ycm_register_as_syntastic_checker = 1 "default 1
-let g:ycm_enable_diagnostic_signs = 1
-let g:ycm_enable_diagnostic_highlighting = 1
-let g:ycm_always_populate_location_list = 0 "default 0
-let g:ycm_open_loclist_on_ycm_diags = 1 "default 1
-
 let g:Show_diagnostics_ui = 1 "default 1
 
-let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': [],'passive_filetypes': [] }
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_go_checkers = ['gometalinter']
-let g:syntastic_enable_perl_checker = 1
-let g:syntastic_perl_checkers = ['perl', 'podchecker']
-
-let g:go_fmt_fail_silently = 0
+let g:go_fmt_fail_silently = 1
 let g:go_fmt_autosave = 1
 let g:go_fmt_command = "goimports"
 
@@ -115,7 +98,7 @@ let g:go_list_type = "locationlist"
 
 " Ale / Airline
 let g:ale_linters = {
-\   'go': ['go build', 'gofmt', 'golint', 'go vet'],
+\   'go': ['go build', 'golangci-lint'],
 \   'perl': ['perl', 'perlcritic'],
 \   'proto': ['prototool'],
 \}
@@ -131,6 +114,11 @@ let g:ale_sign_column_always = 1
 let g:ale_lint_on_text_changed = 0
 " Enable integration with airline.
 let g:airline#extensions#ale#enabled = 1
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+let g:ale_go_golangci_lint_package=1
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 "air-line
 let g:airline_theme = 'dark'
@@ -181,7 +169,7 @@ set formatoptions=tcql
 set nostartofline
 set laststatus=2
 set hlsearch
-set foldmethod=syntax
+set foldmethod=manual
 set foldlevelstart=20
 
 colorscheme hybrid
