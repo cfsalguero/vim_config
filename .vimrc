@@ -26,9 +26,14 @@ Plugin 'rust-lang/rust.vim'
 Plugin 'cfsalguero/perl-go-to-def'
 Plugin 'SirVer/ultisnips'
 Plugin 'buoto/gotests-vim'
-Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plugin 'zchee/deoplete-go', { 'do': 'make'}
-Plugin 'uber/prototool', { 'rtp':'vim/prototool' }
+"Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"Plugin 'zchee/deoplete-go', { 'do': 'make'}
+Plugin 'uarun/vim-protobuf'
+Plugin 'ycm-core/YouCompleteMe'
+
+
+let g:go_fmt_command="gopls"
+let g:go_gopls_gofumpt=1
 
 if has('nvim')
     " Enable deoplete on startup
@@ -95,15 +100,17 @@ let g:go_list_type = "locationlist"
 " Show function params in the status line
 "let g:go_auto_type_info = 1
 "let g:go_auto_sameids = 1
+let g:rustfmt_autosave = 1
 
 " Ale / Airline
 let g:ale_linters = {
-\   'go': ['go build', 'golangci-lint'],
+\   'go': ['gobuild', 'golangci-lint'],
 \   'perl': ['perl', 'perlcritic'],
 \   'proto': ['prototool'],
 \}
 
 let g:ale_fix_on_save = 1
+let g:go_fmt_fail_silently = 1
 let g:ale_sign_error = '⤫'
 let g:ale_sign_warning = '⚠'
 let g:ale_set_highlights = 1
@@ -114,9 +121,10 @@ let g:ale_sign_column_always = 1
 let g:ale_lint_on_text_changed = 0
 " Enable integration with airline.
 let g:airline#extensions#ale#enabled = 1
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
+let g:ale_set_loclist = 1
+let g:ale_set_quickfix = 0
 let g:ale_go_golangci_lint_package=1
+let g:ale_go_golangci_lint_options=''
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
@@ -127,6 +135,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
 
 let NERDTreeQuitOnOpen = 1
+let NERDTreeWinSize=50
 "
 au FileType go nmap <Leader>s <Plug>(go-implements)
 au FileType go nmap <Leader>gd <Plug>(go-doc)

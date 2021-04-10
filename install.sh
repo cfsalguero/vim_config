@@ -19,6 +19,11 @@ mkdir -p ${HOME}/.vim/undodir
 
 ln -s ${HOME}/.vim/.vimrc ${VIMRC} 
 
+rm -rf ~/.vim/bundle/Vundle.vim
+rm -rf ~/.vim/bundle/YouCompleteMe/
+rm -rf ~/.vim/bundle/vim-go
+rm -rf ~/vim/bundle/nerdtree
+
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 git clone https://github.com/Valloric/YouCompleteMe.git ~/.vim/bundle/YouCompleteMe/
 git clone https://github.com/fatih/vim-go.git ~/.vim/bundle/vim-go
@@ -28,13 +33,14 @@ git clone https://github.com/scrooloose/nerdtree.git ~/vim/bundle/nerdtree
 echo "need to install build-essential & cmake"
 sudo apt-get install -y build-essential cmake
 sudo apt-get install -y python-dev python-pip python3-dev python3-pip python-neovim python3-neovim
+sudo apt install build-essential cmake vim-nox python3-dev
+sudo apt install mono-complete golang nodejs default-jdk npm
+
 sudo pip install --upgrade neovim
 
 
-# cd ~/.vim/bundle/YouCompleteMe/
-# git submodule update --init --recursive
-# ./install.py --gocode-completer
-
+cd ~/.vim/bundle/YouCompleteMe/
+python3 install.py --all --go-complete
 
 cd ~/
 vim +PluginInstall +qall
