@@ -28,7 +28,7 @@ Plugin 'SirVer/ultisnips'
 Plugin 'buoto/gotests-vim'
 Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plugin 'zchee/deoplete-go', { 'do': 'make'}
-Plugin 'uber/prototool', { 'rtp':'vim/prototool' }
+Plugin 'uarun/vim-protobuf'
 
 if has('nvim')
     " Enable deoplete on startup
@@ -78,7 +78,7 @@ let g:Show_diagnostics_ui = 1 "default 1
 
 let g:go_fmt_fail_silently = 1
 let g:go_fmt_autosave = 1
-let g:go_fmt_command = "goimports"
+let g:go_fmt_command = "gofumports"
 
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_extra_types = 1
@@ -95,6 +95,7 @@ let g:go_list_type = "locationlist"
 " Show function params in the status line
 "let g:go_auto_type_info = 1
 "let g:go_auto_sameids = 1
+let g:rustfmt_autosave = 1
 
 " Ale / Airline
 let g:ale_linters = {
@@ -103,7 +104,7 @@ let g:ale_linters = {
 \   'proto': ['prototool'],
 \}
 
-let g:ale_fix_on_save = 1
+" let g:ale_fix_on_save = 1
 let g:ale_sign_error = '⤫'
 let g:ale_sign_warning = '⚠'
 let g:ale_set_highlights = 1
@@ -127,6 +128,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
 
 let NERDTreeQuitOnOpen = 1
+let NERDTreeWinSize=50
 "
 au FileType go nmap <Leader>s <Plug>(go-implements)
 au FileType go nmap <Leader>gd <Plug>(go-doc)

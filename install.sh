@@ -2,6 +2,11 @@
 DATE=$(date +%FT%T%z)
 VIMRC="${HOME}/.vimrc"
 
+echo "need to install build-essential & cmake"
+sudo apt-get install -y build-essential cmake git vim neovim
+sudo apt-get install -y python3-dev python3-pip python-neovim python3-neovim
+sudo pip install --upgrade neovim
+
 if [ -a ${HOME}/.vimrc ];
 then
     echo "Found ${VIMRC}"
@@ -25,16 +30,9 @@ git clone https://github.com/fatih/vim-go.git ~/.vim/bundle/vim-go
 git clone https://github.com/scrooloose/nerdtree.git ~/vim/bundle/nerdtree
 
 # YCM
-echo "need to install build-essential & cmake"
-sudo apt-get install -y build-essential cmake
-sudo apt-get install -y python-dev python-pip python3-dev python3-pip python-neovim python3-neovim
-sudo pip install --upgrade neovim
-
-
-# cd ~/.vim/bundle/YouCompleteMe/
-# git submodule update --init --recursive
-# ./install.py --gocode-completer
-
+cd ~/.vim/bundle/YouCompleteMe/
+git submodule update --init --recursive
+./install.py --gocode-completer
 
 cd ~/
 vim +PluginInstall +qall
@@ -42,7 +40,6 @@ vim +PluginInstall +qall
 # Fix for NerdTree. If we try to open but the file is already opened, 
 # just jump to the that instead of opening it twice.
 cp override_tab_mapping.vim bundle/nerdtree/nerdtree_plugin/
-
 
 # PowerFonts for PowerLine
 cd /tmp
@@ -56,4 +53,5 @@ sudo fc-cache -vf
 sudo mv 10-powerline-symbols.conf /etc/fonts/conf.d/
 
 mkdir -p ${HOME}/.config/nvim/
+rm -f /home/karl/.config/nvim/init.vim
 ln -s ~/.vim/.vimrc ~/.config/nvim/init.vim
