@@ -4,38 +4,43 @@ filetype off " required
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 set rtp+=/usr/share/vim/vim80
-call vundle#begin()
+call plug#begin()
+
+"call vundle#begin()
 
 "let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-Plugin 'fatih/vim-go'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'xolox/vim-misc'
-Plugin 'wting/gitsessions.vim'
-Plugin 'dense-analysis/ale'
-Plugin 'kshenoy/vim-signature'
-Plugin 'scrooloose/nerdtree'
-Plugin 'yegappan/mru'
-Plugin 'tpope/vim-fugitive'
-Plugin 'fisadev/vim-isort'
-"Plugin 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
-Plugin 'vim-airline/vim-airline'
-Plugin 'burnettk/vim-angular'
-Plugin 'Chiel92/vim-autoformat'
-Plugin 'rust-lang/rust.vim'
-Plugin 'cfsalguero/perl-go-to-def'
-Plugin 'SirVer/ultisnips'
-Plugin 'buoto/gotests-vim'
-Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plugin 'zchee/deoplete-go', { 'do': 'make'}
-Plugin 'uarun/vim-protobuf'
+"Plugin 'gmarik/Vundle.vim'
+Plug 'fatih/vim-go'
+Plug 'airblade/vim-gitgutter'
+Plug 'xolox/vim-misc'
+Plug 'wting/gitsessions.vim'
+Plug 'dense-analysis/ale'
+Plug 'kshenoy/vim-signature'
+Plug 'scrooloose/nerdtree'
+Plug 'yegappan/mru'
+Plug 'tpope/vim-fugitive'
+Plug 'fisadev/vim-isort'
+Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
+Plug 'vim-airline/vim-airline'
+Plug 'burnettk/vim-angular'
+Plug 'Chiel92/vim-autoformat'
+Plug 'rust-lang/rust.vim'
+Plug 'cfsalguero/perl-go-to-def'
+Plug 'SirVer/ultisnips'
+Plug 'buoto/gotests-vim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-go', { 'do': 'make'}
+Plug 'uarun/vim-protobuf'
+
 
 if has('nvim')
     " Enable deoplete on startup
     let g:deoplete#enable_at_startup = 1
 endif
 
-call vundle#end() " required
+"call vundle#end() " required
+call plug#end()
+
 filetype plugin indent on " required
 syntax on
 " Set path to let neovim find colors
@@ -78,7 +83,9 @@ let g:Show_diagnostics_ui = 1 "default 1
 
 let g:go_fmt_fail_silently = 1
 let g:go_fmt_autosave = 1
-let g:go_fmt_command = "gofumports"
+let g:go_fmt_command = "goformat"
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
 
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_extra_types = 1
@@ -97,11 +104,15 @@ let g:go_list_type = "locationlist"
 "let g:go_auto_sameids = 1
 let g:rustfmt_autosave = 1
 
-" Ale / Airline
+let g:LanguageClient_serverCommands = {
+\ 'rust': ['rust-analyzer'],
+\ }
+
 let g:ale_linters = {
-\   'go': ['go build', 'golangci-lint'],
+\   'go': ['gopls', 'go build', 'golangci-lint'],
 \   'perl': ['perl', 'perlcritic'],
 \   'proto': ['prototool'],
+\   'rust': ['analyzer'],
 \}
 
 " let g:ale_fix_on_save = 1
@@ -145,7 +156,6 @@ au BufRead,BufNewFile *.md set filetype=markdown
 au BufRead,BufNewFile *.go set filetype=go
 au BufRead,BufNewFile *.ts set filetype=javascript
 let g:markdown_fenced_languages = ['javascript', 'go', 'php']
-set signcolumn="yes"
 
 :let g:session_autosave = 'yes'
 " To speed up GitSessions
